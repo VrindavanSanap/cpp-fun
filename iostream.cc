@@ -2,6 +2,7 @@
 
 using namespace std;
 int main() {
-  char a[8] = "";
-  unsigned short b = 1979;
+  clog << "test for clog" << endl;
+
+  return 0;
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 class MyClass {
- public:
+public:
   explicit MyClass(std::string name) : mName(name) {}
 
   ~MyClass() { std::cout << "I'm dying…" << std::endl; }
@@ -9,12 +9,12 @@ class MyClass {
     std::cout << "Oh hello! I am " << mName << "!" << std::endl;
   }
 
- private:
+private:
   std::string mName;
 };
 
 int main() {
-  auto* myClass = new MyClass("");
+  auto *myClass = new MyClass("");
   myClass->saySomething();
   delete myClass;
 
