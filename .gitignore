@@ -1,0 +1,75 @@
+# Build artifacts
+*.o
+*.obj
+*.lo
+*.la
+*.al
+*.gch
+*.pch
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.a
+*.lib
+
+# Dependency caches
+*.dSYM/
+*.ipdb
+*.ipch
+*.pdb
+*.mod
+*.smod
+
+# Compiler generated files
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+*.cov
+
+# Build directories
+build/
+bin/
+dist/
+lib/
+lib64/
+Debug/
+Release/
+
+# IDE and editor config
+.vscode/
+.idea/
+*.code-workspace
+*.swp
+*~
+.DS_Store
+
+# CMake intermediate files
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+Makefile
+Makefile.*
+CMakeScripts/
+Testing/
+CTestTestfile.cmake
+_install/
+
+# Conan and vcpkg
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+CMakeUserPresets.json
+vcpkg_installed/
+
+# Other package/build tools
+.cache/
+.ninja_deps
+.ninja_log
+compile_commands.json
+TORCH_CUDA_ARCH_LIST
+
