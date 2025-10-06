@@ -1,0 +1,39 @@
+name: Format C++
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes clang-format
+
+      - name: Check formatting
+        run: |
+          set -e
+          files=$(git ls-files '*.c' '*.cc' '*.cpp' '*.cxx' '*.c++' '*.h' '*.hh' '*.hpp' '*.hxx' '*.h++')
+          if [ -z "$files" ]; then
+            echo "No C/C++ source files found"
+            exit 0
+          fi
+
+          clang-format --version
+          clang-format -i $files
+
+          if ! git diff --quiet; then
+            echo 'Code is not formatted. Please run clang-format.'
+            git diff
+            exit 1
+          fi
+
+          echo 'All files are properly formatted.'

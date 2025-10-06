@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Formats staged C/C++ files with clang-format before commit.
+
+set -euo pipefail
+
+if ! command -v clang-format >/dev/null 2>&1; then
+  echo "pre-commit: clang-format not found" >&2
+  exit 1
+fi
+
+# Collect staged C/C++ files
+mapfile -t files < <(git diff --cached --name-only --diff-filter=ACMRTUXB | \
+  grep -E '\\.(c|cc|cpp|cxx|c\+\+|h|hh|hpp|hxx|h\+\+)$' || true)
+
+if [ ${#files[@]} -eq 0 ]; then
+  exit 0
+fi
+
+echo "pre-commit: formatting ${#files[@]} file(s) with clang-format"
+
+for file in "${files[@]}"; do
+  if [ -f "$file" ]; then
+    clang-format -i "$file"
+    git add "$file"
+  fi
+done
+
+exit 0
